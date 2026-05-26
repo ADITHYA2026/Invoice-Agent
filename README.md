@@ -219,21 +219,26 @@ Retry handling uses exponential backoff with randomized jitter to reduce repeate
 # Expected Output Structure
 
 ```text
-output/
+sample_output/
 │
 ├── extracted_json/
 │   ├── inv_001_pdf.json
 │   ├── inv_002_pdf.json
+│   ├── inv_003_pdf.json
+│   └── ...
 │
 ├── logs/
 │   ├── process_log.jsonl
-│   ├── human_review.log
+│   └── human_review.log
 │
 ├── routed/
 │   ├── low_value_invoices.csv
-│   ├── slack_alerts.log
+│   └── slack_alerts.log
 │
 └── acknowledgements/
+    ├── inv_001_ack.txt
+    ├── inv_002_ack.txt
+    └── ...
 ```
 
 ---
