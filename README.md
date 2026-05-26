@@ -186,7 +186,7 @@ output/
 
 # Video Walkthrough Checklist
 
-👉 https://drive.google.com/file/d/1eVAJeoIDLazPwSqjJofV6IxCNJPeYpC6/preview
+👉 Video Demonstration (Google Drive Link): https://drive.google.com/file/d/1eVAJeoIDLazPwSqjJofV6IxCNJPeYpC6/preview
 
 The walkthrough demonstrates:
 
