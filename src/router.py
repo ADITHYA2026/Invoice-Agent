@@ -13,8 +13,17 @@ def route_invoice(data):
 
     doc_type = data["document_type"]
     total = data["total_amount"]
+    confidence = data.get("confidence_score", 1)
+
+    if confidence < 0.7:
+
+        with open(HUMAN_REVIEW_FILE, "a") as f:
+            f.write(json.dumps(data) + "\n")
+
+        return "human_review_low_confidence"
 
     if doc_type == "unknown":
+
         with open(HUMAN_REVIEW_FILE, "a") as f:
             f.write(json.dumps(data) + "\n")
 
@@ -25,6 +34,7 @@ def route_invoice(data):
         return "slack"
 
     append_to_csv(data)
+
     return "csv"
 
 
