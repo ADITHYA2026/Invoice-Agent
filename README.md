@@ -119,6 +119,40 @@ python src/main.py
 
 ---
 
+## Docker Setup
+
+Build Docker image:
+
+```bash
+docker build -t invoice-agent .
+````
+
+Run container:
+
+```bash
+docker run --env-file .env invoice-agent
+```
+
+````
+
+---
+
+# 4. VERIFY LOCALLY
+
+Run:
+
+```bash id="vh3gkq"
+docker build -t invoice-agent .
+````
+
+Then:
+
+```bash id="l7s4u2"
+docker run --env-file .env invoice-agent
+```
+
+---
+
 # Design Decisions
 
 - Used Gemini 2.5 Flash Lite for fast and cost-efficient structured extraction.
@@ -214,7 +248,6 @@ The walkthrough demonstrates:
 
 - Real Slack webhook integration
 - Google Sheets integration
-- Dockerized deployment
 - Async batch invoice processing
 - Confidence-score based human escalation
 - Vision-based invoice parsing using multimodal models
