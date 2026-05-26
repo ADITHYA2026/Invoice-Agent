@@ -134,7 +134,7 @@ docker run --env-file .env invoice-agent
 ```
 ---
 
-# 4. VERIFY LOCALLY
+# VERIFY LOCALLY
 
 Run:
 
