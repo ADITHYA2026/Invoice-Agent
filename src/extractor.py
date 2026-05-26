@@ -60,6 +60,9 @@ def extract_invoice_data(raw_text, retries=5):
 
             print(error)
 
+            if attempt >= 1:
+                break
+
             time.sleep(2)
 
         except Exception as e:

@@ -8,81 +8,114 @@ from router import route_invoice
 from logger import log_result
 from ack import send_acknowledgement
 from utils import save_json
-from config import HUMAN_REVIEW_FILE
+
+from config import (
+    HUMAN_REVIEW_FILE,
+    GEMINI_API_KEY
+)
 
 
 WEBHOOK_FILE = "webhook_payload.json"
 
 
-with open(WEBHOOK_FILE, "r") as f:
-    payload = json.load(f)
+def process_invoices():
 
+    if not GEMINI_API_KEY:
+        raise ValueError(
+            "Missing GEMINI_API_KEY in .env file"
+        )
 
-for event in payload["events"]:
+    with open(WEBHOOK_FILE, "r") as f:
+        payload = json.load(f)
 
-    filename = event["attachment"]["filename"]
-    sender = event["from"]
+    for event in payload["events"]:
 
-    local_path = os.path.join(
-        "input",
-        filename
-    )
+        filename = event["attachment"]["filename"]
+        sender = event["from"]
 
-    print(f"\nProcessing: {filename}")
+        local_path = os.path.join(
+            "input",
+            filename
+        )
 
-    try:
+        print(f"\nProcessing: {filename}")
 
-        raw_text = parse_document(local_path)
+        try:
 
-        if not raw_text:
-            raise Exception("Empty extracted text")
+            raw_text = parse_document(local_path)
 
-        data, error = extract_invoice_data(raw_text)
+            if not raw_text:
+                raise Exception("Empty extracted text")
 
-        if error:
+            data, error = extract_invoice_data(raw_text)
 
-            log_result(filename, "partial", error)
+            if error:
+
+                log_result(filename, "partial", error)
+
+                with open(HUMAN_REVIEW_FILE, "a") as f:
+                    f.write(json.dumps({
+                        "filename": filename,
+                        "reason": error
+                    }) + "\n")
+
+                send_acknowledgement(
+                    sender,
+                    filename,
+                    "partial"
+                )
+
+                print(f"Partial Processing: {error}")
+
+                time.sleep(10)
+
+                continue
+
+            save_json(
+                data,
+                filename.replace(".", "_")
+            )
+
+            route = route_invoice(data)
+
+            log_result(filename, "success", route)
+
+            send_acknowledgement(
+                sender,
+                filename,
+                "success"
+            )
+
+            print(f"Successfully processed: {filename}")
+
+        except Exception as e:
+
+            error_message = str(e)
+
+            log_result(
+                filename,
+                "failed",
+                error_message
+            )
 
             with open(HUMAN_REVIEW_FILE, "a") as f:
                 f.write(json.dumps({
                     "filename": filename,
-                    "reason": error
+                    "reason": error_message
                 }) + "\n")
 
-            send_acknowledgement(sender, filename, "partial")
+            send_acknowledgement(
+                sender,
+                filename,
+                "failed"
+            )
 
-            print(f"Partial Processing: {error}")
+            print(f"Error: {error_message}")
 
-            time.sleep(10)
+        print("Waiting before next request...\n")
 
-            continue
+        time.sleep(10)
 
-        save_json(data, filename.replace(".", "_"))
 
-        route = route_invoice(data)
-
-        log_result(filename, "success", route)
-
-        send_acknowledgement(sender, filename, "success")
-
-        print(f"Successfully processed: {filename}")
-
-    except Exception as e:
-
-        error_message = str(e)
-
-        log_result(filename, "failed", error_message)
-
-        with open(HUMAN_REVIEW_FILE, "a") as f:
-            f.write(json.dumps({
-                "filename": filename,
-                "reason": error_message
-            }) + "\n")
-
-        send_acknowledgement(sender, filename, "failed")
-
-        print(f"Error: {error_message}")
-
-    print("Waiting before next request...\n")
-
-    time.sleep(10)
+if __name__ == "__main__":
+    process_invoices()

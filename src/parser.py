@@ -1,18 +1,14 @@
-import os
 import pdfplumber
 import pytesseract
 
 from PIL import Image
 from pathlib import Path
 
+from config import TESSERACT_PATH
 
-# Add Tesseract to PATH (Windows Fix)
-os.environ["PATH"] += os.pathsep + r"C:\Program Files\Tesseract-OCR"
 
-# Explicit Tesseract executable path
-pytesseract.pytesseract.tesseract_cmd = (
-    r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-)
+if TESSERACT_PATH:
+    pytesseract.pytesseract.tesseract_cmd = TESSERACT_PATH
 
 
 def extract_text_from_pdf(file_path):
@@ -20,6 +16,7 @@ def extract_text_from_pdf(file_path):
     text = ""
 
     try:
+
         with pdfplumber.open(file_path) as pdf:
 
             for page in pdf.pages:
@@ -38,9 +35,9 @@ def extract_text_from_pdf(file_path):
 def extract_text_from_image(file_path):
 
     try:
+
         image = Image.open(file_path)
 
-        # Better OCR config for invoices/documents
         text = pytesseract.image_to_string(
             image,
             config="--psm 6"

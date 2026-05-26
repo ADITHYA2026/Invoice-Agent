@@ -5,8 +5,11 @@ load_dotenv()
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
+TESSERACT_PATH = os.getenv("TESSERACT_PATH", "")
+
 INPUT_DIR = "input"
 OUTPUT_DIR = "output"
+
 JSON_DIR = f"{OUTPUT_DIR}/extracted_json"
 LOG_DIR = f"{OUTPUT_DIR}/logs"
 ROUTED_DIR = f"{OUTPUT_DIR}/routed"

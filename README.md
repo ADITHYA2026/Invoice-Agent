@@ -20,8 +20,8 @@ An end-to-end invoice processing pipeline built using Python and Gemini LLM.
 - Exponential backoff retry handling for Gemini API rate limits
 - Graceful degradation for malformed or unreadable documents
 - Structured processing logs for auditability
-- Human-review fallback pipeline for incomplete invoices
 - Persistent Slack alert logging
+- Dockerized container execution support
 
 ---
 
@@ -35,6 +35,7 @@ An end-to-end invoice processing pipeline built using Python and Gemini LLM.
 - Pillow
 - python-dotenv
 - CSV (local fallback storage)
+- Docker
 
 ---
 
