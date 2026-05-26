@@ -247,9 +247,9 @@ sample_output/
 
 ---
 
-# Video Walkthrough Checklist
+# Video Walkthrough
 
-👉 Loom/Screen Recorder - Video Demonstration (Link): https://drive.google.com/file/d/1eVAJeoIDLazPwSqjJofV6IxCNJPeYpC6/preview
+👉 Loom Video /Screen Recorder - Video Demonstration (Link): https://drive.google.com/file/d/1eVAJeoIDLazPwSqjJofV6IxCNJPeYpC6/preview
 
 The walkthrough demonstrates:
 
