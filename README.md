@@ -99,6 +99,9 @@ invoice-agent/
 ├── webhook_payload.json
 └── Project-Video-Demo.md
 ```
+---
+
+# Note: `.env.example` is included for configuration reference. Actual `.env` secrets are excluded using `.gitignore`.
 
 ---
 # Setup
@@ -132,7 +135,7 @@ Verify installation:
 tesseract --version
 ```
 
-Create a `.env` file:
+Create a local `.env` file using `.env.example` as reference:
 
 ```env
 GEMINI_API_KEY=your_api_key
