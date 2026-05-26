@@ -132,25 +132,21 @@ Run container:
 ```bash
 docker run --env-file .env invoice-agent
 ```
-
-````
-
 ---
 
 # 4. VERIFY LOCALLY
 
 Run:
 
-```bash id="vh3gkq"
+```
 docker build -t invoice-agent .
 ````
 
 Then:
 
-```bash id="l7s4u2"
+```
 docker run --env-file .env invoice-agent
 ```
-
 ---
 
 # Design Decisions
