@@ -240,7 +240,7 @@ output/
 
 # Video Walkthrough Checklist
 
-👉 Video Demonstration (Google Drive Link): https://drive.google.com/file/d/1eVAJeoIDLazPwSqjJofV6IxCNJPeYpC6/preview
+👉 Loom/Screen Recorder - Video Demonstration (Link): https://drive.google.com/file/d/1eVAJeoIDLazPwSqjJofV6IxCNJPeYpC6/preview
 
 The walkthrough demonstrates:
 
