@@ -14,6 +14,7 @@ An end-to-end invoice processing pipeline built using Python and Gemini LLM.
   - High-value invoices → Slack alert
   - Low-value invoices → CSV
   - Unknown documents → Human review log
+- Confidence-score based human escalation for uncertain invoice extraction
 - Error handling and retry logic
 - Mock acknowledgement emails
 - Exponential backoff retry handling for Gemini API rate limits
@@ -45,13 +46,36 @@ invoice-agent/
 ├── input/
 │   ├── inv_001.pdf
 │   ├── inv_002.pdf
-│   ├── ...
+│   ├── inv_003.pdf
+│   ├── inv_004.pdf
+│   ├── inv_005.pdf
+│   ├── inv_006.pdf
+│   ├── inv_007.pdf
+│   ├── inv_008.jpg
+│   ├── inv_009.jpg
+│   ├── inv_010.pdf
+│   └── inv_blank.pdf
 │
-├── output/
+├── sample_output/
+│   │
 │   ├── extracted_json/
+│   │   ├── inv_001_pdf.json
+│   │   ├── inv_002_pdf.json
+│   │   ├── inv_003_pdf.json
+│   │   ├── ...
+│   │
 │   ├── logs/
+│   │   ├── process_log.jsonl
+│   │   └── human_review.log
+│   │
 │   ├── routed/
+│   │   ├── low_value_invoices.csv
+│   │   └── slack_alerts.log
+│   │
 │   └── acknowledgements/
+│       ├── inv_001_ack.txt
+│       ├── inv_002_ack.txt
+│       └── ...
 │
 ├── src/
 │   ├── main.py
@@ -65,32 +89,36 @@ invoice-agent/
 │   ├── config.py
 │   └── utils.py
 │
-├── sample_output/
+├── Dockerfile
+├── .dockerignore
+├── .gitignore
 ├── requirements.txt
-├── .env
+├── .env.example
 ├── README.md
-└── webhook_payload.json
+├── webhook_payload.json
+└── Project-Video-Demo.md
 ```
 
 ---
-
 # Setup
 
-Install dependencies:
+## Local Setup
+
+Install Python dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Install Tesseract OCR:
+Install Tesseract OCR.
 
-## Ubuntu/Linux
+### Ubuntu/Linux
 
 ```bash
 sudo apt install tesseract-ocr
 ```
 
-## Windows
+### Windows
 
 Install Tesseract OCR from:
 https://github.com/UB-Mannheim/tesseract/wiki
@@ -103,15 +131,15 @@ Verify installation:
 tesseract --version
 ```
 
-Add API key to `.env`
+Create a `.env` file:
 
 ```env
-GEMINI_API_KEY=your_key
+GEMINI_API_KEY=your_api_key
 ```
 
 ---
 
-# Run
+# Run Locally
 
 ```bash
 python src/main.py
@@ -119,34 +147,29 @@ python src/main.py
 
 ---
 
-## Docker Setup
+# Docker Setup
 
 Build Docker image:
 
 ```bash
 docker build -t invoice-agent .
-````
+```
 
-Run container:
+---
+
+# Run Using Docker
 
 ```bash
 docker run --env-file .env invoice-agent
 ```
----
 
-# VERIFY LOCALLY
+The Docker container automatically:
+- installs dependencies
+- installs Tesseract OCR
+- configures the runtime environment
+- executes the invoice pipeline
 
-Run:
-
-```
-docker build -t invoice-agent .
-````
-
-Then:
-
-```
-docker run --env-file .env invoice-agent
-```
+No local Python setup is required when using Docker.
 ---
 
 # Design Decisions
@@ -169,9 +192,10 @@ docker run --env-file .env invoice-agent
 
 | Condition | Action |
 |---|---|
+| confidence_score < 0.7 | Human review |
+| document_type == unknown | Human review |
 | total_amount > 50000 | Mock Slack alert |
 | total_amount <= 50000 | Append to CSV |
-| document_type == unknown | Human review log |
 
 ---
 
@@ -235,7 +259,6 @@ The walkthrough demonstrates:
 - Free-tier Gemini API rate limits may slow large batch processing.
 - OCR quality depends heavily on scan clarity and image resolution.
 - Extremely complex invoice layouts may require table-aware parsing models.
-- OCR accuracy depends on scan quality.
 - Very complex invoice tables may require advanced parsing.
 
 ---
