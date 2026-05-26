@@ -101,7 +101,7 @@ invoice-agent/
 ```
 ---
 
- Note: `.env.example` is included for configuration reference. Actual `.env` secrets are excluded using `.gitignore`.
+ Note: `.env.example` is included for configuration reference. Actual `.env` secrets and venv are excluded using `.gitignore`.
 
 ---
 # Setup
