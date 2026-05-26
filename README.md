@@ -245,5 +245,4 @@ The walkthrough demonstrates:
 - Real Slack webhook integration
 - Google Sheets integration
 - Async batch invoice processing
-- Confidence-score based human escalation
 - Vision-based invoice parsing using multimodal models
