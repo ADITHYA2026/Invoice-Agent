@@ -1,0 +1,8 @@
+
+ACKNOWLEDGEMENT
+
+To: billing@swiftbridge.in
+Document: inv_002.pdf
+Processing Status: success
+
+Thank you. Your document has been processed.

@@ -1,0 +1,40 @@
+{
+    "document_type": "standard_invoice",
+    "vendor_name": "RAJPATH COURIER SERVICES",
+    "invoice_number": "RCS/24-25/0772",
+    "invoice_date": "08 Nov 2024",
+    "total_amount": 31143.0,
+    "confidence_score": 0.9,
+    "line_items": [
+        {
+            "description": "Express parcel - Mumbai zone (18 shipments)",
+            "quantity": 18.0,
+            "unit_price": 950.0,
+            "amount": 17100.0
+        },
+        {
+            "description": "Reverse pickup charges",
+            "quantity": 9.0,
+            "unit_price": 450.0,
+            "amount": 4050.0
+        },
+        {
+            "description": "CODhandling fee",
+            "quantity": 18.0,
+            "unit_price": 120.0,
+            "amount": 2160.0
+        },
+        {
+            "description": "Fuel surcharge",
+            "quantity": 1.0,
+            "unit_price": 1282.0,
+            "amount": 1282.0
+        },
+        {
+            "description": "Sunday delivery premium",
+            "quantity": 3.0,
+            "unit_price": 600.0,
+            "amount": 1800.0
+        }
+    ]
+}

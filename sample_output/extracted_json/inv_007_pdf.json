@@ -1,0 +1,28 @@
+{
+    "document_type": "credit_note",
+    "vendor_name": "SWIFTBRIDGE TECH SOLUTIONS",
+    "invoice_number": "CN-SBT-2024-0019",
+    "invoice_date": "25 Nov 2024",
+    "total_amount": -45924.0,
+    "confidence_score": 0.95,
+    "line_items": [
+        {
+            "description": "Cloud infrastructure setup \u2013 cancelled scope",
+            "quantity": 1.0,
+            "unit_price": -22000.0,
+            "amount": -22000.0
+        },
+        {
+            "description": "API development \u2013 2 endpoints not delivered",
+            "quantity": 2.0,
+            "unit_price": -12000.0,
+            "amount": -24000.0
+        },
+        {
+            "description": "Processing fee retained (non-refundable)",
+            "quantity": 1.0,
+            "unit_price": 3000.0,
+            "amount": 3000.0
+        }
+    ]
+}

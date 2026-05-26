@@ -1,0 +1,10 @@
+{"timestamp": "2026-05-22 17:16:26.946527", "filename": "inv_001.pdf", "status": "success", "reason": "csv"}
+{"timestamp": "2026-05-22 17:16:48.390122", "filename": "inv_002.pdf", "status": "success", "reason": "slack"}
+{"timestamp": "2026-05-22 17:17:03.282444", "filename": "inv_003.pdf", "status": "success", "reason": "csv"}
+{"timestamp": "2026-05-22 17:17:17.000084", "filename": "inv_004.pdf", "status": "success", "reason": "slack"}
+{"timestamp": "2026-05-22 17:17:37.686289", "filename": "inv_005.pdf", "status": "success", "reason": "csv"}
+{"timestamp": "2026-05-22 17:17:52.840509", "filename": "inv_006.pdf", "status": "success", "reason": "csv"}
+{"timestamp": "2026-05-22 17:18:09.431296", "filename": "inv_007.pdf", "status": "success", "reason": "csv"}
+{"timestamp": "2026-05-22 17:18:27.656434", "filename": "inv_008.jpg", "status": "success", "reason": "csv"}
+{"timestamp": "2026-05-22 17:18:40.971190", "filename": "inv_009.jpg", "status": "success", "reason": "slack"}
+{"timestamp": "2026-05-22 17:19:42.167438", "filename": "inv_010.pdf", "status": "partial", "reason": "Validation Error: 1 validation error for InvoiceData\ntotal_amount\n  Input should be a valid number [type=float_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.10/v/float_type"}

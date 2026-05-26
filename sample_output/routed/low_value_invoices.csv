@@ -1,0 +1,7 @@
+vendor_name,invoice_number,invoice_date,total_amount,document_type
+Nexora Supplies Pvt. Ltd.,NXR-2024-0381,10 Nov 2024,28400.0,standard_invoice
+Priya Packaging Works,PPW/24-25/0087,05 Nov 2024,7280.0,standard_invoice
+KALYAN ELECTRICAL WORKS,KEW/24/0556,14 Nov 2024,48480.0,standard_invoice
+Nexora Supplies Pvt. Ltd.,NXR-CN-2024-0041,12 Nov 2024,12000.0,credit_note
+SWIFTBRIDGE TECH SOLUTIONS,CN-SBT-2024-0019,25 Nov 2024,-45924.0,credit_note
+RAJPATH COURIER SERVICES,RCS/24-25/0772,08 Nov 2024,31143.0,standard_invoice

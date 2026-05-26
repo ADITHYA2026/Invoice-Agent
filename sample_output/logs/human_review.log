@@ -1,0 +1,1 @@
+{"filename": "inv_010.pdf", "reason": "Validation Error: 1 validation error for InvoiceData\ntotal_amount\n  Input should be a valid number [type=float_type, input_value=None, input_type=NoneType]\n    For further information visit https://errors.pydantic.dev/2.10/v/float_type"}
