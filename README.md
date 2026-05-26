@@ -247,7 +247,7 @@ sample_output/
 
 ---
 
-# Video Walkthrough
+# Video Walkthrough (Publicly accessable Video Link)
 
 👉 Loom Video /Screen Recorder - Video Demonstration (Link): https://drive.google.com/file/d/1eVAJeoIDLazPwSqjJofV6IxCNJPeYpC6/preview
 
